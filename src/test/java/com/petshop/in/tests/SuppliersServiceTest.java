@@ -1,0 +1,169 @@
+package com.petshop.in.tests;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+import java.util.NoSuchElementException;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+
+import org.junit.jupiter.api.Test;
+
+import org.mockito.InjectMocks;
+
+import org.mockito.Mock;
+
+import org.mockito.MockitoAnnotations;
+
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.petshop.in.exceptions.AddressAndSuppliers.SupplierCityNotFoundException;
+import com.petshop.in.exceptions.AddressAndSuppliers.SupplierIdNotFoundException;
+import com.petshop.in.exceptions.AddressAndSuppliers.SupplierNameNotFoundException;
+import com.petshop.in.exceptions.AddressAndSuppliers.SupplierNotFoundException;
+import com.petshop.in.model.Suppliers;
+import com.petshop.in.repository.SuppliersRepository;
+import com.petshop.in.serviceimpl.SuppliersServiceImpl;
+
+
+
+public class SuppliersServiceTest {
+
+    @Mock
+    private SuppliersRepository suppliersRepository;
+
+    @InjectMocks
+    private SuppliersServiceImpl suppliersService;
+
+    @BeforeEach
+    public void setUp() {
+
+        MockitoAnnotations.initMocks(this);
+
+    }
+
+    @Test
+    public void testGetAllSuppliers() {
+
+        List<Suppliers> suppliersList = new ArrayList<>();
+
+        suppliersList.add(new Suppliers());
+
+        when(suppliersRepository.findAll()).thenReturn(suppliersList);
+
+        assertDoesNotThrow(() -> suppliersService.getAllSuppliers());
+
+    }
+
+    @Test
+    public void testGetAllSuppliers_SupplierNotFoundException() {
+
+        when(suppliersRepository.findAll()).thenReturn(new ArrayList<>());
+
+        assertThrows(SupplierNotFoundException.class, () -> suppliersService.getAllSuppliers());
+
+    }
+
+    @Test
+    public void testGetSupplierById() {
+
+        Suppliers supplier = new Suppliers();
+
+        //supplier.setId(1);
+
+        Optional<Suppliers> optionalSupplier = Optional.of(supplier);
+
+        when(suppliersRepository.findById(1)).thenReturn(optionalSupplier);
+
+        assertDoesNotThrow(() -> suppliersService.getSupplierById(1));
+
+    }
+
+    @Test
+    public void testGetSupplierById_SupplierIdNotFoundException() {
+
+        when(suppliersRepository.findById(1)).thenThrow(NoSuchElementException.class);
+
+        assertThrows(SupplierIdNotFoundException.class, () -> suppliersService.getSupplierById(1));
+
+    }
+
+    @Test
+    public void testGetSuppliersByName() {
+
+        List<Suppliers> suppliersList = new ArrayList<>();
+
+        suppliersList.add(new Suppliers());
+
+        when(suppliersRepository.findByName("SupplierName")).thenReturn(suppliersList);
+
+        assertDoesNotThrow(() -> suppliersService.getSuppliersByName("SupplierName"));
+
+    }
+
+    @Test
+    public void testGetSuppliersByName_SupplierNameNotFoundException() {
+
+        when(suppliersRepository.findByName("SupplierName")).thenReturn(new ArrayList<>());
+
+        assertThrows(SupplierNameNotFoundException.class, () -> suppliersService.getSuppliersByName("SupplierName"));
+
+    }
+
+    @Test
+    public void testGetSuppliersByCity() {
+
+        List<Suppliers> suppliersList = new ArrayList<>();
+
+        suppliersList.add(new Suppliers());
+
+        when(suppliersRepository.findByCity("SupplierCity")).thenReturn(suppliersList);
+
+        assertDoesNotThrow(() -> suppliersService.getSuppliersByCity("SupplierCity"));
+
+    }
+
+//    @Test
+
+//    public void testGetSuppliersByCity_SupplierNameNotFoundException() {
+
+//        when(suppliersRepository.findByCity("SupplierCity")).thenReturn(new ArrayList<>());
+
+//
+
+//        assertThrows(SupplierCityNotFoundException.class, () -> suppliersService.getSuppliersByCity("SupplierCity"));
+
+//    }
+
+    @Test
+    public void testGetSuppliersByState() {
+
+        List<Suppliers> suppliersList = new ArrayList<>();
+
+        suppliersList.add(new Suppliers());
+
+        when(suppliersRepository.findByState("SupplierState")).thenReturn(suppliersList);
+
+        assertDoesNotThrow(() -> suppliersService.getSuppliersByState("SupplierState"));
+
+    }
+
+    @Test
+    public void testGetSuppliersByState_SupplierCityNotFoundException() {
+
+        when(suppliersRepository.findByState("SupplierState")).thenReturn(new ArrayList<>());
+
+        assertThrows(SupplierCityNotFoundException.class, () -> suppliersService.getSuppliersByState("SupplierState"));
+
+    }
+
+    // Similarly, you can add tests for other methods...
+
+}

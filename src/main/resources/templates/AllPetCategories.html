@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List of Addresses</title>
+	<style type="text/css">
+		body {
+			background-image: linear-gradient(grey, lightblue, skyblue, darkgrey, rgb(128, 128, 255), grey, rgb(128, 128, 192));
+			border: 10px groove white;
+			border-radius: 10px;
+			box-shadow: 3px;
+
+		}
+
+		div {
+			text-align: center;
+			border: 2px dotted white;
+			border-radius: 10px;
+			margin-left: 380px;
+			margin-right: 380px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		table {
+			margin-left: 75px;
+			margin-top: 30px;
+			margin-bottom: 10px;
+			width: 300px;
+		}
+
+		tr {
+			border: 1px solid black;
+		}
+
+		td {
+			border: 1px solid black;
+
+		}
+
+		#btn {
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			border: none;
+			border-radius: 5px;
+			background: linear-gradient(to right, #bdc3c7, #6bb9f0);
+			color: white;
+			text-transform: uppercase;
+			transition: background-color 0.3s ease;
+			position: fixed;
+			margin-left: 400px;
+
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<center>
+		<h1>List of Addresses</h1>
+	</center>
+	<center><button id=btn><a href="/home">Home</button></center>
+	<div th:each="Category:${AllCategories}">
+		<table>
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						Category Id
+					</td>
+					<td>
+						<span th:text="${Category.categoryId}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>Street</td>
+					<td><span th:text="${Category.name}"></span></td>
+				</tr>
+				
+			</tbody>
+		</table>
+
+	</div>
+
+
+</body>
+
+</html>

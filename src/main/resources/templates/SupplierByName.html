@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List of Suppliers By Name</title>
+	<style type="text/css">
+		body{
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('https://img.freepik.com/free-vector/cute-pets-illustration_53876-112522.jpg?w=1380&t=st=1713329667~exp=1713330267~hmac=271856e8828bf055b014aef89d2d3e2ce6e9b713dfabcebb864d15ef771fa68a')
+        no-repeat center center fixed;
+        background-size: cover;
+        background-blend-mode: overlay;
+        }
+        h1 {
+            text-align: center;
+            color: #008080;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #008080;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-b5color: #ddd;
+        }
+	</style>
+</head>
+
+<body>
+	<center>
+		<h1>List of Suppliers By Name</h1>
+	</center>
+	<div th:each="Supplier:${SupplierName}">
+		<table>
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>supplier Id</td>
+					<td><span th:text="${Supplier.supplierId}"></span></td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td><span th:text="${Supplier.name}"></span></td>
+				</tr>
+				<tr>
+					<td>ContactPerson</td>
+					<td> <span th:text="${Supplier.contactPerson}"></span></td>
+				</tr>
+				<tr>
+					<td>Phone Number</td>
+					<td><span th:text="${Supplier.phoneNumber}"></span></td>
+				</tr>
+				<tr>
+					<td>Email </td>
+					<td> <span th:text="${Supplier.email}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						Address Id
+					</td>
+					<td>
+						<span th:text="*{Supplier.address.addressId}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>Street</td>
+					<td><span th:text="*{Supplier.address.street}"></span></td>
+				</tr>
+				<tr>
+					<td>City </td>
+					<td> <span th:text="*{Supplier.address.city}"></span></td>
+				</tr>
+				<tr>
+					<td>State </td>
+					<td><span th:text="*{Supplier.address.state}"></span></td>
+				</tr>
+				<tr>
+					<td>ZipCode </td>
+					<td> <span th:text="*{Supplier.address.zipCode}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<center><button id=btn><a href="/api/suppliershome">Home</button></center>
+</body>
+
+</html>

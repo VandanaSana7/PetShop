@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List of Customers</title>
+	<style type="text/css">
+		body {
+			background-image: linear-gradient(grey, lightblue);
+
+			border-radius: 10px;
+			box-shadow: 3px;
+			background-repeat: no-repeat;
+			min-height: 100%;
+			background-attachment: fixed;
+
+		}
+
+		div {
+			text-align: center;
+			border: 2px dotted white;
+			border-radius: 10px;
+			margin-left: 380px;
+			margin-right: 380px;
+			margin-top: 90px;
+			margin-bottom: 10px;
+			height: 350px;
+			background-color: #DDDDDD;
+			opacity: 0.7;
+		}
+
+		table {
+			margin-left: 75px;
+			margin-top: 30px;
+			margin-bottom: 10px;
+			width: 300px;
+		}
+
+		tr {
+			border: 1px solid black;
+		}
+
+		td {
+			border: 1px solid black;
+
+		}
+
+		#btn {
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			border: none;
+			border-radius: 5px;
+			background: linear-gradient(to right, #bdc3c7, #6bb9f0);
+			color: white;
+			text-transform: uppercase;
+			transition: background-color 0.3s ease;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	
+		<h1>List of Pets</h1>
+		<center><button id="btn"><a href="/home">Home</a></button></center>
+	
+	<div th:each="Pets:${AllPets}">
+		<table>
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>pet Id</td>
+					<td><span th:text="${Pets.petId}"></span></td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td><span th:text="${Pets.name}"></span></td>
+				</tr>
+				
+				<tr>
+					<td>Breed</td>
+					<td><span th:text="${Pets.breed}"></span></td>
+				</tr>
+				
+			
+				<tr>
+					<td>Age</td>
+					<td><span th:text="${Pets.age}"></span></td>
+				</tr>
+				<tr>
+					<td>Price </td>
+					<td> <span th:text="${Pets.price}"></span></td>
+				</tr>
+				
+				<tr>
+					<td>Description </td>
+					<td> <span th:text="${Pets.description}"></span></td>
+				</tr>
+				
+				<tr>
+					<td>ImageUrl </td>
+					<td> <span th:text="${Pets.imageUrl}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						Category Id
+					</td>
+					<td>
+						<span th:text="*{Pets.Category.categoryId}"></span>
+					</td>
+				</tr>
+			<tr>
+					<td>ZipCode </td>
+					<td> <span th:text="*{Pets.Category.name}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+
+</body>
+
+</html>

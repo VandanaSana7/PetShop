@@ -1,0 +1,207 @@
+  <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Details</title>
+<style>
+		body {
+			font-family: Arial, sans-serif;
+			/* Change font to Arial or fallback to sans-serif */
+			background-color: #f2f2f2;
+			/* Light gray background color */
+			color: #333;
+			/* Dark text color */
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			/* Center align the heading */
+			color: #0066cc;
+			/* Blue heading color */
+			margin-top: 30px;
+			/* Add some top margin */
+		}
+		.container {
+			width: 80%;
+			/* Set width for the container */
+			margin: 30px auto;
+			/* Center the container horizontally */
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+			/* Add some top margin to the table */
+			border: 2px solid #333;
+			/* Dark border with thickness */
+		}
+		th,
+		td {
+			padding: 10px;
+			text-align: left;
+			border: 1px solid #333;
+			/* Dark border for inner lines */
+		}
+		th {
+			background-color: #f2f2f2;
+			/* Light gray background for table header */
+			color: #333;
+			/* Dark text color */
+		}
+		tr:nth-child(even) {
+			background-color: #f9f9f9;
+			/* Alternate row background color */
+		}
+		.btn {
+			padding: 10px 20px;
+			background-color: #0066cc;
+			/* Blue button background color */
+			color: #fff;
+			/* White button text color */
+			border: none;
+			cursor: pointer;
+			margin-top: 20px;
+			/* Add some top margin to the button */
+		}
+		.btn:hover {
+			background-color: #004080;
+			/* Darker blue on hover */
+		}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Transactions</h1>
+<table>
+<tr>
+<th>Transaction ID</th>
+<th>Customer id</th>
+<th>Customer first name</th>
+<th>Customer last name</th>
+<th>Customer phone number</th>
+<th>Customer email</th>
+
+<th>pet id</th>
+<th>transactionDate</th>
+<th>amount</th>
+ 
+            <th>transaction status</th>
+</tr>
+<tr th:each="transactions : ${AllTransactions}">
+<td th:text="${transactions.transactionId}"></td>
+<td th:text="${transactions.customer.customerId}"></td>
+<td th:text="${transactions.customer.firstName}"></td>
+<td th:text="${transactions.customer.lastName}"></td>
+<td th:text="${transactions.customer.phoneNumber}"></td>
+<td th:text="${transactions.customer.email}"></td>
+<td th:text="${transactions.pet.petId}"></td>
+<td th:text="${transactions.transactionDate}"></td>
+<td th:text="${transactions.amount}"></td>
+<td th:text="${transactions.transactionStatus}"></td>
+</tr>
+</table>
+<center><button id="btn"><a href="/home">Home</a></button></center>
+</div>
+</body>
+</html>
+
+<!--  
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset = "UTF-8"
+<title></title>
+<style>
+			body{
+       			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        		margin: 0;
+        		padding: 0;
+        		background: url('https://img.freepik.com/free-vector/cute-pets-illustration_53876-112522.jpg?w=1380&t=st=1713329667~exp=1713330267~hmac=271856e8828bf055b014aef89d2d3e2ce6e9b713dfabcebb864d15ef771fa68a')
+        					no-repeat center center fixed;
+        		background-size: cover;
+        		background-blend-mode: overlay;
+        	}
+        	h1 {
+            	text-align: center;
+            	color: #008080;
+       		}
+        	table {
+            	width: 80%;
+            	margin: 20px auto;
+            	border-collapse: collapse;
+            	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            	background-color: #fff;
+        	}
+        	th, td {
+            	padding: 12px 15px;
+            	text-align: left;
+            	border-bottom: 1px solid #ddd;
+        	}
+        	th {
+            	background-color: #008080;
+            	color: #fff;
+        	}
+        	tr:nth-child(even) {
+            	background-color: #f2f2f2;
+        	}
+        	tr:hover {
+            	background-b5color: #ddd;
+        	}
+</style>
+</head>
+<body>
+<center><h1>List of all the Transactions</h1></center>
+<div th:each="transaction:${AllTransactions}">
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transaction Id</td>
+<td>
+<span th:text = "${transaction.transactionId}"></span>
+</td>
+</tr>
+<tr>
+<td>Customers</td>
+<td>
+<span th:text = "${transaction.customer}"></span>
+</td>
+</tr>
+<tr>
+<td>Pets</td>
+<td>
+<span th:text = "${transaction.pet}"></span>
+</td>
+</tr>
+<tr>
+<td>Transaction Date</td>
+<td>
+<span th:text = "${transaction.transactionDate}"></span>
+</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>
+<span th:text = "${transaction.amount}"></span>
+</td>
+</tr>
+<tr>
+<td>Transaction Status</td>
+<td>
+<span th:text = "${transaction.transactionStatus}"></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+ 
+</html>
+-->
